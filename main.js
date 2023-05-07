@@ -1,10 +1,12 @@
 let firstNum;
 let secondNum;
 let operator;
+let operators = document.querySelectorAll(".operatorBtn");
 let displayValue = document.querySelector("div > .screen > #dpValue");
 let delBtn = document.getElementById("del");
 let clBtn = document.getElementById("cl");
 let btnNumbers = document.querySelectorAll(".numButton");
+let calcBtn = document.querySelector(".calculate");
 
 clBtn.addEventListener("click", () => {
   firstNum = 0;
@@ -20,6 +22,27 @@ btnNumbers.forEach((element) => {
     displayValue.innerText += element.innerText;
     firstNum = +displayValue.innerText;
   });
+});
+
+operators.forEach((element) => {
+  element.addEventListener("click", () => {
+    if (
+      operator == "+" ||
+      operator == "-" ||
+      operator == "/" ||
+      operator == "*"
+    ) {
+      displayValue.innerText.slice(0, -1) + element.innerText;
+      operator = element.innerText;
+    } else {
+      displayValue.innerText += element.innerText;
+      operator = element.innerText;
+    }
+  });
+});
+
+calcBtn.addEventListener("click", () => {
+  operate(firstNum + operator);
 });
 
 //operating functions
