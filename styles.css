@@ -1,0 +1,123 @@
+* {
+  font-family: "Times New Roman", Times, serif;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+header,
+footer {
+  text-align: center;
+}
+
+header {
+  position: absolute;
+  top: 0px;
+  padding: 20px;
+  width: 100%;
+  font-size: 30px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0px;
+  padding: 20px;
+  width: 100%;
+}
+
+.btnContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  width: 300px;
+  margin: 200px auto;
+  gap: 10px;
+  border: 5px solid black;
+  border-radius: 10px;
+  padding: 10px 0px;
+  background-color: grey;
+}
+
+.btnContainer button {
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  margin: 0px 2px;
+  font-size: larger;
+  background-color: lawngreen;
+  border: 2px solid black;
+  border-radius: 5%;
+  /* color: white; */
+}
+
+.btnContainer button:hover {
+  background-color: green;
+}
+.btnContainer button:active {
+  background-color: darkgreen;
+}
+
+.wBtn > button {
+  width: 128px;
+  border: 2px solid black;
+  border-radius: 5%;
+  cursor: pointer;
+  color: white;
+}
+
+.wBtn > :first-child {
+  background-color: red;
+}
+.wBtn > :first-child:hover {
+  background-color: red;
+}
+
+.wBtn > :first-child:active {
+  background-color: crimson;
+}
+
+.wBtn > :nth-child(2) {
+  background-color: blue;
+}
+
+.wBtn > :nth-child(2):hover {
+  background-color: blue;
+}
+
+.wBtn > :nth-child(2):active {
+  background-color: darkblue;
+}
+
+.screen {
+  background-color: lightgray;
+  width: 264px;
+  border: 2px solid black;
+  text-align: end;
+  min-height: 100px;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.screen > div {
+  margin: 12px 0;
+  padding: 0px 5px;
+  min-height: 18px;
+}
+
+.screen > :nth-child(2) {
+  font-size: 30px;
+}
+
+@media only screen and (max-height: 800px) {
+  body {
+    background-color: lightblue;
+  }
+  .btnContainer {
+    margin: 50px auto;
+    width: auto;
+  }
+  header,
+  footer {
+    display: none;
+  }
+}
