@@ -8,6 +8,10 @@ let clBtn = document.getElementById("cl");
 let btnNumbers = document.querySelectorAll(".numButton");
 let calcBtn = document.querySelector(".calculate");
 
+delBtn.addEventListener("click", () => {
+  displayValue.innerText = displayValue.innerText.slice(0, -1);
+});
+
 clBtn.addEventListener("click", () => {
   firstNum = 0;
   secondNum = 0;
@@ -26,13 +30,10 @@ btnNumbers.forEach((element) => {
 
 operators.forEach((element) => {
   element.addEventListener("click", () => {
-    if (
-      operator == "+" ||
-      operator == "-" ||
-      operator == "/" ||
-      operator == "*"
-    ) {
-      displayValue.innerText.slice(0, -1) + element.innerText;
+    let lastEle = displayValue.innerText.at(-1);
+    if (lastEle == "+" || lastEle == "-" || lastEle == "/" || lastEle == "*") {
+      displayValue.innerText = displayValue.innerText.slice(0, -1);
+      displayValue.innerText += element.innerText;
       operator = element.innerText;
     } else {
       displayValue.innerText += element.innerText;
