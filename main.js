@@ -1,5 +1,5 @@
-let firstNum;
-let secondNum;
+let firstNum = "";
+let secondNum = "";
 let operator;
 let operators = document.querySelectorAll(".operatorBtn");
 let displayValue = document.querySelector("div > .screen > #dpValue");
@@ -13,13 +13,13 @@ delBtn.addEventListener("click", () => {
     displayValue.innerText = "0";
   } else {
     displayValue.innerText = displayValue.innerText.slice(0, -1);
-    firstNum = +displayValue.innerText;
+    firstNum = displayValue.innerText;
   }
 });
 
 clBtn.addEventListener("click", () => {
-  firstNum = 0;
-  secondNum = 0;
+  firstNum = "";
+  secondNum = "";
   displayValue.innerText = "0";
 });
 
@@ -29,7 +29,7 @@ btnNumbers.forEach((element) => {
       displayValue.innerText = "";
     }
     displayValue.innerText += element.innerText;
-    firstNum = +displayValue.innerText;
+    firstNum += element.innerText;
   });
 });
 
