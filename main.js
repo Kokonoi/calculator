@@ -9,7 +9,12 @@ let btnNumbers = document.querySelectorAll(".numButton");
 let calcBtn = document.querySelector(".calculate");
 
 delBtn.addEventListener("click", () => {
-  displayValue.innerText = displayValue.innerText.slice(0, -1);
+  if (displayValue.innerText.length == 1) {
+    displayValue.innerText = "0";
+  } else {
+    displayValue.innerText = displayValue.innerText.slice(0, -1);
+    firstNum = +displayValue.innerText;
+  }
 });
 
 clBtn.addEventListener("click", () => {
