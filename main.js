@@ -8,6 +8,8 @@ let clBtn = document.getElementById("cl");
 let btnNumbers = document.querySelectorAll(".numButton");
 let calcBtn = document.querySelector(".calculate");
 
+setFirst();
+
 delBtn.addEventListener("click", () => {
   if (displayValue.innerText.length == 1) {
     displayValue.innerText = "0";
@@ -23,15 +25,27 @@ clBtn.addEventListener("click", () => {
   displayValue.innerText = "0";
 });
 
-btnNumbers.forEach((element) => {
-  element.addEventListener("click", () => {
-    if (displayValue.innerText == "0") {
-      displayValue.innerText = "";
-    }
-    displayValue.innerText += element.innerText;
-    firstNum += element.innerText;
+function setFirst() {
+  btnNumbers.forEach((element) => {
+    element.addEventListener("click", () => {
+      if (displayValue.innerText == "0") {
+        displayValue.innerText = "";
+      }
+      displayValue.innerText += element.innerText;
+      firstNum += element.innerText;
+    });
   });
-});
+}
+
+function setSecond() {
+  btnNumbers.forEach((element) => {
+    element.removeEventListener("click", setFirst);
+    element.addEventListener("click", () => {
+      displayValue.innerText += element.innerText;
+      secondNum += element.innerText;
+    });
+  });
+}
 
 operators.forEach((element) => {
   element.addEventListener("click", () => {
@@ -40,9 +54,11 @@ operators.forEach((element) => {
       displayValue.innerText = displayValue.innerText.slice(0, -1);
       displayValue.innerText += element.innerText;
       operator = element.innerText;
+      setSecond();
     } else {
       displayValue.innerText += element.innerText;
       operator = element.innerText;
+      setSecond();
     }
   });
 });
