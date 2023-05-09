@@ -2,7 +2,7 @@ let firstNum = "";
 let secondNum = "";
 let operator;
 let operators = document.querySelectorAll(".operatorBtn");
-let displayValue = document.querySelector("div > .screen > #dpValue");
+let dpVal = document.querySelector("div > .screen > #dpValue");
 let delBtn = document.getElementById("del");
 let clBtn = document.getElementById("cl");
 let btnNumbers = document.querySelectorAll(".numButton");
@@ -11,35 +11,35 @@ let calcBtn = document.querySelector(".calculate");
 setFirst();
 
 delBtn.addEventListener("click", () => {
-  if (displayValue.innerText.length == 1) {
-    displayValue.innerText = "0";
-    firstNum = displayValue.innerText;
+  if (dpVal.innerText.length == 1) {
+    dpVal.innerText = "0";
+    firstNum = dpVal.innerText;
   } else {
     if (operator !== undefined) {
       secondNum = secondNum.slice(0, -1);
     }
-    displayValue.innerText = displayValue.innerText.slice(0, -1);
-    firstNum = displayValue.innerText;
+    dpVal.innerText = dpVal.innerText.slice(0, -1);
+    firstNum = dpVal.innerText;
   }
 });
 
 clBtn.addEventListener("click", () => {
   firstNum = "";
   secondNum = "";
-  displayValue.innerText = "0";
+  dpVal.innerText = "0";
 });
 
 function setFirst() {
   btnNumbers.forEach((element) => {
     element.addEventListener("click", () => {
-      if (displayValue.innerText == "0") {
-        displayValue.innerText = element.innerText;
+      if (dpVal.innerText == "0") {
+        dpVal.innerText = element.innerText;
         firstNum += element.innerText;
       } else if (operator == undefined) {
-        displayValue.innerText += element.innerText;
+        dpVal.innerText += element.innerText;
         firstNum += element.innerText;
       } else {
-        displayValue.innerText += element.innerText;
+        dpVal.innerText += element.innerText;
         secondNum += element.innerText;
       }
     });
@@ -48,38 +48,35 @@ function setFirst() {
 
 operators.forEach((element) => {
   element.addEventListener("click", () => {
-    let lastEle = displayValue.innerText.at(-1);
+    let lastEle = dpVal.innerText.at(-1);
     if (lastEle == "+" || lastEle == "-" || lastEle == "/" || lastEle == "*") {
-      displayValue.innerText = displayValue.innerText.slice(0, -1);
-      displayValue.innerText += element.innerText;
+      dpVal.innerText = dpVal.innerText.slice(0, -1);
+      dpVal.innerText += element.innerText;
       operator = element.innerText;
     } else if (
-      displayValue.innerText.includes("+") ||
-      displayValue.innerText.includes("-") ||
-      displayValue.innerText.includes("/") ||
-      displayValue.innerText.includes("*")
+      dpVal.innerText.includes("+") ||
+      dpVal.innerText.includes("-") ||
+      dpVal.innerText.includes("/") ||
+      dpVal.innerText.includes("*")
     ) {
-      if (
-        displayValue.innerText.includes("/") ||
-        displayValue.innerText.includes("*")
-      ) {
+      if (dpVal.innerText.includes("/") || dpVal.innerText.includes("*")) {
         operate(+firstNum, +secondNum, operator);
-        displayValue.innerText += element.innerText;
+        dpVal.innerText += element.innerText;
         operator = element.innerText;
       } else {
         operate(+firstNum, +secondNum, operator);
-        displayValue.innerText += element.innerText;
+        dpVal.innerText += element.innerText;
         operator = element.innerText;
       }
     } else {
-      displayValue.innerText += element.innerText;
+      dpVal.innerText += element.innerText;
       operator = element.innerText;
     }
   });
 });
 
 calcBtn.addEventListener("click", () => {
-  displayValue.innerText = operate(+firstNum, +secondNum, operator);
+  dpVal.innerText = operate(+firstNum, +secondNum, operator);
 });
 
 //operating functions
