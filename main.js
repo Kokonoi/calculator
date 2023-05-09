@@ -23,27 +23,36 @@ clBtn.addEventListener("click", () => {
   firstNum = "";
   secondNum = "";
   displayValue.innerText = "0";
+  setFirst();
 });
 
 function setFirst() {
   btnNumbers.forEach((element) => {
-    element.addEventListener("click", () => {
-      if (displayValue.innerText == "0") {
-        displayValue.innerText = "";
-      }
-      displayValue.innerText += element.innerText;
-      firstNum += element.innerText;
-    });
+    element.addEventListener(
+      "click",
+      () => {
+        if (displayValue.innerText == "0") {
+          displayValue.innerText = "";
+        }
+        displayValue.innerText += element.innerText;
+        firstNum += element.innerText;
+      },
+      false
+    );
   });
 }
 
 function setSecond() {
   btnNumbers.forEach((element) => {
     element.removeEventListener("click", setFirst);
-    element.addEventListener("click", () => {
-      displayValue.innerText += element.innerText;
-      secondNum += element.innerText;
-    });
+    element.addEventListener(
+      "click",
+      () => {
+        displayValue.innerText += element.innerText;
+        secondNum += element.innerText;
+      },
+      false
+    );
   });
 }
 
@@ -63,9 +72,9 @@ operators.forEach((element) => {
   });
 });
 
-calcBtn.addEventListener("click", () => {
-  operate(firstNum + operator);
-});
+// calcBtn.addEventListener("click", () => {
+//   operate(firstNum + operator);
+// });
 
 //operating functions
 function add(num1, num2) {
