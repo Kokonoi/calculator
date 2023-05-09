@@ -44,7 +44,7 @@ function setFirst() {
 
 function setSecond() {
   btnNumbers.forEach((element) => {
-    element.removeEventListener("click", setFirst);
+    element.innerHTML += "";
     element.addEventListener(
       "click",
       () => {
