@@ -13,7 +13,11 @@ setFirst();
 delBtn.addEventListener("click", () => {
   if (displayValue.innerText.length == 1) {
     displayValue.innerText = "0";
+    firstNum = displayValue.innerText;
   } else {
+    if (operator !== undefined) {
+      secondNum = secondNum.slice(0, -1);
+    }
     displayValue.innerText = displayValue.innerText.slice(0, -1);
     firstNum = displayValue.innerText;
   }
@@ -49,6 +53,24 @@ operators.forEach((element) => {
       displayValue.innerText = displayValue.innerText.slice(0, -1);
       displayValue.innerText += element.innerText;
       operator = element.innerText;
+    } else if (
+      displayValue.innerText.includes("+") ||
+      displayValue.innerText.includes("-") ||
+      displayValue.innerText.includes("/") ||
+      displayValue.innerText.includes("*")
+    ) {
+      if (
+        displayValue.innerText.includes("/") ||
+        displayValue.innerText.includes("*")
+      ) {
+        operate(+firstNum, +secondNum, operator);
+        displayValue.innerText += element.innerText;
+        operator = element.innerText;
+      } else {
+        operate(+firstNum, +secondNum, operator);
+        displayValue.innerText += element.innerText;
+        operator = element.innerText;
+      }
     } else {
       displayValue.innerText += element.innerText;
       operator = element.innerText;
@@ -56,9 +78,9 @@ operators.forEach((element) => {
   });
 });
 
-// calcBtn.addEventListener("click", () => {
-//   operate(firstNum + operator);
-// });
+calcBtn.addEventListener("click", () => {
+  displayValue.innerText = operate(+firstNum, +secondNum, operator);
+});
 
 //operating functions
 function add(num1, num2) {
@@ -77,17 +99,25 @@ function divide(num1, num2) {
 function operate(a, b, op) {
   switch (op) {
     case "+":
-      add(a, b);
-      break;
+      firstNum = add(a, b);
+      secondNum = "";
+      operator = undefined;
+      return +firstNum;
     case "-":
-      subtract(a, b);
-      break;
+      firstNum = subtract(a, b);
+      secondNum = "";
+      operator = undefined;
+      return +firstNum;
     case "*":
-      multiply(a, b);
-      break;
+      firstNum = multiply(a, b);
+      secondNum = "";
+      operator = undefined;
+      return +firstNum;
     case "/":
-      divide(a, b);
-      break;
+      firstNum = divide(a, b);
+      secondNum = "";
+      operator = undefined;
+      return +firstNum;
     default:
       break;
   }
