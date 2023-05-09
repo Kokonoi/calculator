@@ -23,27 +23,21 @@ clBtn.addEventListener("click", () => {
   firstNum = "";
   secondNum = "";
   displayValue.innerText = "0";
-  setFirst();
 });
 
 function setFirst() {
   btnNumbers.forEach((element) => {
     element.addEventListener("click", () => {
       if (displayValue.innerText == "0") {
-        displayValue.innerText = "";
+        displayValue.innerText = element.innerText;
+        firstNum += element.innerText;
+      } else if (operator == undefined) {
+        displayValue.innerText += element.innerText;
+        firstNum += element.innerText;
+      } else {
+        displayValue.innerText += element.innerText;
+        secondNum += element.innerText;
       }
-      displayValue.innerText += element.innerText;
-      firstNum += element.innerText;
-    });
-  });
-}
-
-function setSecond() {
-  btnNumbers.forEach((element) => {
-    element.innerHTML += "";
-    element.addEventListener("click", () => {
-      displayValue.innerText += element.innerText;
-      secondNum += element.innerText;
     });
   });
 }
@@ -55,11 +49,9 @@ operators.forEach((element) => {
       displayValue.innerText = displayValue.innerText.slice(0, -1);
       displayValue.innerText += element.innerText;
       operator = element.innerText;
-      setSecond();
     } else {
       displayValue.innerText += element.innerText;
       operator = element.innerText;
-      setSecond();
     }
   });
 });
