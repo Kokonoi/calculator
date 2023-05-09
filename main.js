@@ -28,31 +28,23 @@ clBtn.addEventListener("click", () => {
 
 function setFirst() {
   btnNumbers.forEach((element) => {
-    element.addEventListener(
-      "click",
-      () => {
-        if (displayValue.innerText == "0") {
-          displayValue.innerText = "";
-        }
-        displayValue.innerText += element.innerText;
-        firstNum += element.innerText;
-      },
-      false
-    );
+    element.addEventListener("click", () => {
+      if (displayValue.innerText == "0") {
+        displayValue.innerText = "";
+      }
+      displayValue.innerText += element.innerText;
+      firstNum += element.innerText;
+    });
   });
 }
 
 function setSecond() {
   btnNumbers.forEach((element) => {
     element.innerHTML += "";
-    element.addEventListener(
-      "click",
-      () => {
-        displayValue.innerText += element.innerText;
-        secondNum += element.innerText;
-      },
-      false
-    );
+    element.addEventListener("click", () => {
+      displayValue.innerText += element.innerText;
+      secondNum += element.innerText;
+    });
   });
 }
 
