@@ -59,15 +59,9 @@ operators.forEach((element) => {
       dpVal.innerText.includes("/") ||
       dpVal.innerText.includes("*")
     ) {
-      if (dpVal.innerText.includes("/") || dpVal.innerText.includes("*")) {
-        operate(+firstNum, +secondNum, operator);
-        dpVal.innerText += element.innerText;
-        operator = element.innerText;
-      } else {
-        operate(+firstNum, +secondNum, operator);
-        dpVal.innerText += element.innerText;
-        operator = element.innerText;
-      }
+      dpVal.innerText = operate(+firstNum, +secondNum, operator);
+      dpVal.innerText += element.innerText;
+      operator = element.innerText;
     } else {
       dpVal.innerText += element.innerText;
       operator = element.innerText;
@@ -76,6 +70,9 @@ operators.forEach((element) => {
 });
 
 calcBtn.addEventListener("click", () => {
+  if (firstNum == "" || secondNum == "") {
+    return;
+  }
   dpVal.innerText = operate(+firstNum, +secondNum, operator);
 });
 
