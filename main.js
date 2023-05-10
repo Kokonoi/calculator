@@ -1,4 +1,4 @@
-let firstNum = "";
+let firstNum = "0";
 let secondNum = "";
 let operator;
 let operators = document.querySelectorAll(".operatorBtn");
@@ -36,8 +36,16 @@ function setFirst() {
   btnNumbers.forEach((element) => {
     element.addEventListener("click", () => {
       if (dpVal.innerText == "0") {
-        dpVal.innerText = element.innerText;
-        firstNum += element.innerText;
+        if (element.innerText == "0") {
+          return;
+        }
+        if (element.innerText == ".") {
+          dpVal.innerText += element.innerText;
+          firstNum += element.innerText;
+        } else {
+          dpVal.innerText = element.innerText;
+          firstNum += element.innerText;
+        }
       } else if (operator == undefined) {
         dpVal.innerText += element.innerText;
         firstNum += element.innerText;
