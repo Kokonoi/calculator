@@ -94,16 +94,16 @@ calcBtn.addEventListener("click", () => {
 
 //operating functions
 function add(num1, num2) {
-  return num1 + num2;
+  return roundToTwo(num1 + num2);
 }
 function subtract(num1, num2) {
-  return num1 - num2;
+  return roundToTwo(num1 - num2);
 }
 function multiply(num1, num2) {
-  return num1 * num2;
+  return roundToTwo(num1 * num2);
 }
 function divide(num1, num2) {
-  return num1 / num2;
+  return roundToTwo(num1 / num2);
 }
 
 function operate(a, b, op) {
@@ -131,4 +131,8 @@ function operate(a, b, op) {
     default:
       break;
   }
+}
+
+function roundToTwo(num) {
+  return +(Math.round(num + "e+2") + "e-2");
 }
