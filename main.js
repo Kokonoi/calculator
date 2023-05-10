@@ -7,6 +7,7 @@ let delBtn = document.getElementById("del");
 let clBtn = document.getElementById("cl");
 let btnNumbers = document.querySelectorAll(".numButton");
 let calcBtn = document.querySelector(".calculate");
+let history = document.querySelector(".screen :first-child");
 
 setFirst();
 
@@ -20,12 +21,14 @@ delBtn.addEventListener("click", () => {
     }
     dpVal.innerText = dpVal.innerText.slice(0, -1);
     firstNum = dpVal.innerText;
+    history.innerText = "";
   }
 });
 
 clBtn.addEventListener("click", () => {
   firstNum = "";
   secondNum = "";
+  history.innerText = "";
   dpVal.innerText = "0";
 });
 
@@ -38,9 +41,11 @@ function setFirst() {
       } else if (operator == undefined) {
         dpVal.innerText += element.innerText;
         firstNum += element.innerText;
+        history.innerText = "";
       } else {
         dpVal.innerText += element.innerText;
         secondNum += element.innerText;
+        history.innerText = "";
       }
     });
   });
@@ -59,12 +64,14 @@ operators.forEach((element) => {
       dpVal.innerText.includes("/") ||
       dpVal.innerText.includes("*")
     ) {
+      history.innerText = firstNum + operator + secondNum + "=";
       dpVal.innerText = operate(+firstNum, +secondNum, operator);
       dpVal.innerText += element.innerText;
       operator = element.innerText;
     } else {
       dpVal.innerText += element.innerText;
       operator = element.innerText;
+      history.innerText = "";
     }
   });
 });
@@ -73,6 +80,7 @@ calcBtn.addEventListener("click", () => {
   if (firstNum == "" || secondNum == "") {
     return;
   }
+  history.innerText = firstNum + operator + secondNum + "=";
   dpVal.innerText = operate(+firstNum, +secondNum, operator);
 });
 
