@@ -2,6 +2,7 @@
 
 A simple calculator that can perform calculations with decimal numbers. This calculator was built using HTML, CSS, and JavaScript.
 
+<hr>
 <h3>Features</h3>
 <ul>
     <li>Addition, subtraction, multiplication, and division operations</li>
